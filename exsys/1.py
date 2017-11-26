@@ -25,8 +25,9 @@ def search(string):
 
 def search2(string):
     with open('База_знаний.txt', 'r') as bz:
+        string_spl = string.split(',')
         for line in bz:
-            if string[:2] in line:
+            if string_spl[0] in line:
                 splited = line.split(',')
                 stripped = splited[1]
                 a = stripped.strip()
@@ -37,18 +38,19 @@ def search2(string):
 def condition(cond, res):
     reslist = []
     with open('База_знаний.txt', 'r') as bz:
+        cond_spl = cond.split(',')
         for line in bz:
-            if cond[:2] in line:
+            if cond_spl[0] in line:
                 splited = line.split(',')
                 stripped = splited[1]
                 a = stripped.strip()
                 b = a.strip(')')
                 reslist.append(b)
     with open('База_знаний.txt', 'a') as bz:
-        beginning = res[:4]
+        res_splt = res.split(',')
         for item in reslist:
-            bz.write(beginning + ',' + ' ' + item + ')' + '\n')
-            print(beginning + ',' + ' ' + item + ')')
+            bz.write(res_splt[0] + ',' + ' ' + item + ')' + '\n')
+            print(res_splt[0] + ',' + ' ' + item + ')')
 
 
 def condition2(cond, res):
@@ -60,10 +62,13 @@ def condition2(cond, res):
 
 def condition3(cond, res):
     with open('База_знаний.txt', 'r+') as bz:
+        cond_splt = cond.split(',')
         for line in bz:
-            if cond[2:] in line:
+            if cond_splt[1] in line:
+                res_splt = res.split(',')
                 splited = line.split(',')
-                bz.write(splited[0] + res[2:] + '\n')
+                bz.write(splited[0] + ',' + res_splt[1] + '\n')
+                print(splited[0] + ',' + res_splt[1])
 
 
 if __name__ == '__main__':
